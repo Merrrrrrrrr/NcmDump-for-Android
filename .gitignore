@@ -1,0 +1,19 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build
+/app/release
+
+# Signing keystore (credentials in local.properties, which is also ignored)
+*.keystore
+*.jks
+
+# Claude Code — personal/local settings (keep shared .claude/settings.json commitable)
+.claude/settings.local.json

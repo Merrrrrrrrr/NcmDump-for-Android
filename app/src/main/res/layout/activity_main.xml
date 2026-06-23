@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8F5F0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- App Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NcmDump"
+            android:textSize="28sp"
+            android:textColor="#E04432"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网易云音乐 NCM 解密工具"
+            android:textSize="14sp"
+            android:textColor="#997766"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Section: Shizuku access (preferred for Android/data) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shizuku 访问（Android/data）"
+            android:textSize="14sp"
+            android:textColor="#555"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvShizukuStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shizuku：检测中…"
+            android:textSize="13sp"
+            android:textColor="#887766"
+            android:padding="10dp"
+            android:background="@drawable/folder_bg"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnShizukuGrant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="授权 Shizuku"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp"
+            style="@style/Widget.Material3.Button.TonalButton" />
+
+        <EditText
+            android:id="@+id/etNcmPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#333"
+            android:padding="12dp"
+            android:background="@drawable/folder_bg"
+            android:inputType="textNoSuggestions"
+            android:fontFamily="monospace"
+            android:hint="Android/data 下的 NCM 目录绝对路径"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnScanShizuku"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="扫描此目录"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:layout_marginBottom="20dp"
+            style="@style/Widget.Material3.Button.TonalButton" />
+
+        <!-- Section: NCM Source Folder (SAF fallback) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="或：选择公共目录（无 Shizuku 时）"
+            android:textSize="14sp"
+            android:textColor="#555"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvNcmFolder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="未选择"
+                android:textSize="15sp"
+                android:textColor="#333"
+                android:padding="12dp"
+                android:background="@drawable/folder_bg"
+                android:ellipsize="middle"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/btnSelectNcmFolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp"
+                style="@style/Widget.Material3.Button.TonalButton" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNcmFileCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:textColor="#887766"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Section: Output Folder -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="输出文件夹"
+            android:textSize="14sp"
+            android:textColor="#555"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvOutputFolder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="未选择"
+                android:textSize="15sp"
+                android:textColor="#333"
+                android:padding="12dp"
+                android:background="@drawable/folder_bg"
+                android:ellipsize="middle"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/btnSelectOutputFolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp"
+                style="@style/Widget.Material3.Button.TonalButton" />
+        </LinearLayout>
+
+        <!-- Options -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchRemoveSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="转换后删除源文件"
+                android:textSize="14sp"
+                android:textColor="#555"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Convert Button -->
+        <Button
+            android:id="@+id/btnStartConvert"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="开 始 转 换"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:enabled="false"
+            app:backgroundTint="#E04432"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Progress -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:indeterminateTint="#E04432"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="#E04432"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Status Message -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Conversion Log -->
+        <TextView
+            android:id="@+id/tvLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:textColor="#555"
+            android:fontFamily="monospace"
+            android:lineSpacingExtra="2dp" />
+
+    </LinearLayout>
+</ScrollView>
