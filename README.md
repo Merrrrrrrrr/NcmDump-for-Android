@@ -36,7 +36,7 @@
 
 从 Android 11 起，分区存储（Scoped Storage）封锁了 `/Android/data/` 和 `/Android/obb/`：
 
-- 普通文件 API 读不到，**`MANAGE_EXTERNAL_STORAGE`（所有文件访问）也无法正确识别**；；
+- 普通文件 API 读不到，**`MANAGE_EXTERNAL_STORAGE`（所有文件访问）也无法正确识别**；
 - SAF 文档选择器自 Android 11 起**禁止授权 `Android/data` 子目录**（`ExternalStorageProvider.shouldBlockFromTree`）。
 
 网易云恰好把下载的 `.ncm` 存在这里。本项目用 **[Shizuku](https://shizuku.rikka.app/)** 把文件访问提权到 shell uid（adb 级别），通过一个运行在 shell 进程里的 `UserService` 直接读取这些目录——免 root，也不必把文件手动拷贝出来。
